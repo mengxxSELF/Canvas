@@ -13,17 +13,25 @@
     img.src='girl.png';
 
     img.onload = function () {
-        timer =setInterval(run,300);
+        timer =setInterval(run,160);
     };
 
-    ctx.x=10;
+    ctx.x=0;
+    var canvasWidth= canvas.width;
+
     // 开启定时器 角色原地跑
     function run() {
         ++index;
         ctx.x+=30;
         ctx.clearRect(0,0,canvas.width,canvas.height); // 清除画布
         //ctx.drawImage(img,96*(index%4),96*2,96,96,10,10,96*2,96*2); //角色原地跑
-        ctx.drawImage(img,96*(index%4),96*2,96,96,ctx.x,10,96*2,96*2); //加入横向跑
+        ctx.drawImage(img,96*(index%4),96*2,96,96,ctx.x,50,96*2,96*2); //加入横向跑
+
+
+        // 判断是否达到边缘
+        if(ctx.x>= canvasWidth-150){
+            ctx.x=10;
+        };
     };
 
 }();
